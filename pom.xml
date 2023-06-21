@@ -14,7 +14,7 @@
 	<name>spring-data-jpa-course</name>
 	<description>Spring Data JPA with Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -25,6 +25,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.16</version>
 			<scope>runtime</scope>
 		</dependency>
 
