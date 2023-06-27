@@ -24,7 +24,7 @@ class ProductRepositoryTest {
         Product product = new Product();
         product.setName("product 1");
         product.setDescription("product 1 descipripton");
-        product.setSku("100ABC");
+        product.setSku("100ABC2");
         product.setPrice(new BigDecimal(100));
         product.setActive(true);
         product.setImageUrl("product1.png");
@@ -95,5 +95,45 @@ class ProductRepositoryTest {
     void deleteByIdMethod() {
         Long id = 1L;
         productRepository.deleteById(id);
+    }
+
+    @Test
+    void deleteMethod() {
+        // find an entity by id
+        Long id = 1L;
+        Product product = productRepository.findById(id).get();
+        //delete(entity)
+        productRepository.delete(product);
+    }
+
+    @Test
+    void deleteAllMethod() {
+        // productRepository.deleteAll();
+        Product product = productRepository.findById(5L).get();
+
+        Product product1 = productRepository.findById(6L).get();
+
+        productRepository.deleteAll(List.of(product, product1));
+    }
+
+    void countMethod() {
+        long count = productRepository.count();
+        System.out.println(count);
+    }
+
+    void existsByIdMethod() {
+        boolean productExists = productRepository.existsById(1L);
+        System.out.println(productExists);
+    }
+
+    @Test
+    void findByNameOrDescription() {
+        List<Product> products = productRepository.findByNameOrDescription("product 1", "product 1 description");
+        List<Product> products2 = productRepository.findByNameAndDescription("product 1", "product 1 description");
+
+        products.forEach((product) -> {
+            System.out.println(product.getId());
+            System.out.println(product.getName());
+        });
     }
 }
